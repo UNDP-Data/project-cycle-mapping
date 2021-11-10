@@ -180,12 +180,12 @@ const CheckBoxEl = styled.div`
   margin: 0 10px;
   align-items: center;
   cursor: pointer;
-  color: #f1f1f1;
+  color: #383838;
 `;
 
 const OptionHead = styled.div`
   font-size: 14px;
-  color: #f1f1f1;
+  color: #383838;
   margin-bottom: 10px;
   font-weight: bold;
   text-transform: uppercase;
@@ -204,9 +204,8 @@ const Checkbox = styled.div<CheckBoxProps>`
   width: 14px;
   height: 14px;
   margin-right: 5px;
-  border: 1px solid #f1f1f1;
-  background-color: ${props => props.selected ? '#f1f1f1' : 'rgba(0,0,0,0'};
-  font-weight: ${props => props.selected ? 'bold' : 'normal'};
+  border: 1px solid #383838;
+  background-color: ${props => props.selected ? '#383838' : '#ffffff'};
 `;
 
 const CheckboxContainer = styled.div`
@@ -246,9 +245,9 @@ const options = [
 
 function App() {
   const [online, setOnline] = useState(true)
-  const [sharePoint, setsharePoint] = useState(true)
-  const [atlas, setAtlas] = useState(true)
-  const [website, setWebsite] = useState(true)
+  const [sharePoint, setsharePoint] = useState(false)
+  const [atlas, setAtlas] = useState(false)
+  const [website, setWebsite] = useState(false)
   const [selectedRole, setSelectedRoles] = useState<string[]>([])
   return (
     <>
@@ -304,6 +303,7 @@ function App() {
           website={website}
           online={online}
           roles={selectedRole}
+          all={!(atlas || website || sharePoint)}
         />
       </div>
     </>

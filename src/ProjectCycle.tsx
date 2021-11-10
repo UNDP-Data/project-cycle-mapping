@@ -7,6 +7,7 @@ interface Props {
   atlas: boolean;
   website: boolean;
   online: boolean;
+  all: boolean;
   roles: string[];
 }
 
@@ -17,6 +18,7 @@ export const ProjectCycle = (props: Props) => {
     website,
     online,
     roles,
+    all,
   } = props;
   const [selectedHeader, setSelectedHeader] = useState<string | null>(null);
   const SVG = useRef<SVGSVGElement>(null);
@@ -72,7 +74,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 14" d="M98 982L98 1082C98 1087.52 102.477 1092 108 1092H124" stroke="#E4882E" />
             <path id="Rectangle 15" d="M98 1067L98 1186C98 1191.52 102.477 1196 108 1196H124" stroke="#E4882E" />
           </g>
-          <g className="PipelineModule Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="PipelineModule Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_2" filter="url(#filter0_d_23:667)">
               <rect x="131" y="208" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="208.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -88,7 +90,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12" cx="131.5" cy="225.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13" cx="131.5" cy="225.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="PSDDD Offline" opacity={(roles.length === 0 || roles.indexOf("Project Developer") !== -1)  ? 1 : 0.25}>
+          <g className="PSDDD Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1)  ? 1 : 0.25}>
             <g id="Rectangle 6_3" filter="url(#filter1_d_23:667)">
               <rect x="131" y="294" width="234" height="84" rx="6" fill="white" />
               <rect x="131.5" y="294.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -105,7 +107,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_2" cx="131.5" cy="311.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_2" cx="131.5" cy="311.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="PIP SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1)  ? 1 : 0.25}>
+          <g className="PIP SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1)  ? 1 : 0.25}>
             <g id="Rectangle 6_4" filter="url(#filter2_d_23:667)">
               <rect x="131" y="398" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="398.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -121,7 +123,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_3" cx="131.5" cy="415.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_3" cx="131.5" cy="415.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="PPG SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="PPG SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_5" filter="url(#filter3_d_23:667)">
               <rect x="131" y="484" width="234" height="86" rx="6" fill="white" />
               <rect x="131.5" y="484.5" width="233" height="85" rx="5.5" stroke="#0F8B79" />
@@ -138,7 +140,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_4" cx="131.5" cy="501.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_4" cx="131.5" cy="501.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="ProjectDoc SharePoint Website" opacity={(sharePoint || website) && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="ProjectDoc SharePoint Website" opacity={((sharePoint || website)  || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_6" filter="url(#filter4_d_23:667)">
               <rect x="131" y="590" width="234" height="84" rx="6" fill="white" />
               <rect x="131.5" y="590.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -158,7 +160,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_5" cx="131.5" cy="607.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_5" cx="131.5" cy="607.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="JPPD SharePoint Website" opacity={(sharePoint || website) && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="JPPD SharePoint Website" opacity={((sharePoint || website)  || (online && all)) &&  (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_7" filter="url(#filter5_d_23:667)">
               <rect x="131" y="694" width="234" height="102" rx="6" fill="white" />
               <rect x="131.5" y="694.5" width="233" height="101" rx="5.5" stroke="#0F8B79" />
@@ -179,7 +181,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_6" cx="131.5" cy="711.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_6" cx="131.5" cy="711.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="WorkshopReport Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="WorkshopReport Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_8" filter="url(#filter6_d_23:667)">
               <rect x="131" y="816" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="816.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -195,7 +197,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_7" cx="131.5" cy="833.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_7" cx="131.5" cy="833.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="SurveyData Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="SurveyData Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_9" filter="url(#filter7_d_23:667)">
               <rect x="131" y="902" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="902.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -211,7 +213,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_8" cx="131.5" cy="919.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_8" cx="131.5" cy="919.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="GD Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="GD Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_10" filter="url(#filter8_d_23:667)">
               <rect x="131" y="988" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="988.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -227,7 +229,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_9" cx="131.5" cy="1005.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_9" cx="131.5" cy="1005.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="StakeholderMeetingReport Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="StakeholderMeetingReport Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_11" filter="url(#filter9_d_23:667)">
               <rect x="131" y="1074" width="234" height="84" rx="6" fill="white" />
               <rect x="131.5" y="1074.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -244,7 +246,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_10" cx="131.5" cy="1091.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_10" cx="131.5" cy="1091.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="BOTR Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="BOTR Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_12" filter="url(#filter10_d_23:667)">
               <rect x="131" y="1178" width="234" height="84" rx="6" fill="white" />
               <rect x="131.5" y="1178.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -261,7 +263,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_11" cx="131.5" cy="1195.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_11" cx="131.5" cy="1195.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="FR Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="FR Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_13" filter="url(#filter11_d_23:667)">
               <rect x="131" y="1282" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="1282.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -277,7 +279,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_12" cx="131.5" cy="1299.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_12" cx="131.5" cy="1299.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="GA Offline" opacity={roles.length === 0 ? 1 : 0.25}>
+          <g className="GA Offline" opacity={(all || !online) && roles.length === 0 ? 1 : 0.25}>
             <g id="Rectangle 6_14" filter="url(#filter12_d_23:667)">
               <rect x="131" y="1368" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="1368.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -293,7 +295,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_13" cx="131.5" cy="1385.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_13" cx="131.5" cy="1385.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="ProjectQA SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1  || roles.indexOf("Quality Assessor") !== -1) ? 1 : 0.25}>
+          <g className="ProjectQA SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1  || roles.indexOf("Quality Assessor") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_15" filter="url(#filter13_d_23:667)">
               <rect x="131" y="1454" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="1454.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -309,7 +311,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_14" cx="131.5" cy="1471.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_14" cx="131.5" cy="1471.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="SESP Offline" opacity={roles.length === 0 || roles.indexOf("Project Developer") !== -1 ? 1 : 0.25}>
+          <g className="SESP Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_16" filter="url(#filter14_d_23:667)">
               <rect x="131" y="1540" width="234" height="102" rx="6" fill="white" />
               <rect x="131.5" y="1540.5" width="233" height="101" rx="5.5" stroke="#D52B1E" />
@@ -327,7 +329,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_15" cx="131.5" cy="1557.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_15" cx="131.5" cy="1557.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="RiskRegister Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="RiskRegister Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_17" filter="url(#filter15_d_23:667)">
               <rect x="131" y="1662" width="234" height="66" rx="6" fill="white" />
               <rect x="131.5" y="1662.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -364,7 +366,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 24" d="M421 388V510C421 515.523 425.477 520 431 520H447" stroke="#E4882E" />
             <path id="Rectangle 25" d="M421 189V320C421 325.523 425.477 330 431 330H447" stroke="#E4882E" />
           </g>
-          <g className="PCAT Offline" opacity={roles.length === 0 || roles.indexOf("Project Developer") !== -1 ? 1 : 0.25}>
+          <g className="PCAT Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_18" filter="url(#filter16_d_23:667)">
               <rect x="454" y="208" width="234" height="84" rx="6" fill="white" />
               <rect x="454.5" y="208.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -381,7 +383,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_17" cx="454.5" cy="225.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_17" cx="454.5" cy="225.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="HACT SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="HACT SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_19" filter="url(#filter17_d_23:667)">
               <rect x="454" y="312" width="234" height="84" rx="6" fill="white" />
               <rect x="454.5" y="312.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -398,7 +400,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_18" cx="454.5" cy="329.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_18" cx="454.5" cy="329.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="RiskRegister Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="RiskRegister Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_20" filter="url(#filter18_d_23:667)">
               <rect x="454" y="416" width="234" height="66" rx="6" fill="white" />
               <rect x="454.5" y="416.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -414,7 +416,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_19" cx="454.5" cy="433.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_19" cx="454.5" cy="433.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="LoA Offline" opacity={(roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="LoA Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_21" filter="url(#filter19_d_23:667)">
               <rect x="454" y="606" width="234" height="66" rx="6" fill="white" />
               <rect x="454.5" y="606.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -430,7 +432,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_20" cx="454.5" cy="623.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_20" cx="454.5" cy="623.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="ProjectDocument SharePoint Website" opacity={(sharePoint || website) && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="ProjectDocument SharePoint Website" opacity={((sharePoint || website) || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_22" filter="url(#filter20_d_23:667)">
               <rect x="454" y="502" width="234" height="84" rx="6" fill="white" />
               <rect x="454.5" y="502.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -450,7 +452,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_21" cx="454.5" cy="519.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_21" cx="454.5" cy="519.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="GA Offline" opacity={(roles.length === 0 || roles.indexOf("Programme Manager") !== -1 || roles.indexOf("RR") !== -1) ? 1 : 0.25}>
+          <g className="GA Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1 || roles.indexOf("RR") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_23" filter="url(#filter21_d_23:667)">
               <rect x="454" y="692" width="234" height="66" rx="6" fill="white" />
               <rect x="454.5" y="692.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -488,7 +490,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 30" d="M744 266V388C744 393.523 748.477 398 754 398H770" stroke="#E4882E" />
             <path id="Rectangle 31" d="M744 171V302C744 307.523 748.477 312 754 312H770" stroke="#E4882E" />
           </g>
-          <g className="LPAC Offline" opacity={(roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="LPAC Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_24" filter="url(#filter22_d_23:667)">
               <rect x="777" y="208" width="234" height="66" rx="6" fill="white" />
               <rect x="777.5" y="208.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -504,7 +506,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_23" cx="777.5" cy="225.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_23" cx="777.5" cy="225.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="ProjIDOutputID Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
+          <g className="ProjIDOutputID Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_25" filter="url(#filter23_d_23:667)">
               <rect x="777" y="294" width="234" height="66" rx="6" fill="white" />
               <rect x="777.5" y="294.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -520,7 +522,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_24" cx="777.5" cy="311.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_24" cx="777.5" cy="311.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="IBT Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
+          <g className="IBT Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_26" filter="url(#filter24_d_23:667)">
               <rect x="777" y="380" width="234" height="84" rx="6" fill="white" />
               <rect x="777.5" y="380.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -537,7 +539,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_25" cx="777.5" cy="397.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_25" cx="777.5" cy="397.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="RiskRegister Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="RiskRegister Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_27" filter="url(#filter25_d_23:667)">
               <rect x="777" y="484" width="234" height="66" rx="6" fill="white" />
               <rect x="777.5" y="484.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -553,7 +555,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_26" cx="777.5" cy="501.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_26" cx="777.5" cy="501.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="GM Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
+          <g className="GM Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_28" filter="url(#filter26_d_23:667)">
               <rect x="777" y="570" width="234" height="66" rx="6" fill="white" />
               <rect x="777.5" y="570.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -569,7 +571,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_27" cx="777.5" cy="587.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_27" cx="777.5" cy="587.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="Link SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
+          <g className="Link SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_29" filter="url(#filter27_d_23:667)">
               <rect x="777" y="656" width="234" height="84" rx="6" fill="white" />
               <rect x="777.5" y="656.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -586,7 +588,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_28" cx="777.5" cy="673.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_28" cx="777.5" cy="673.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="OutputIDs SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
+          <g className="OutputIDs SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_30" filter="url(#filter28_d_23:667)">
               <rect x="777" y="760" width="234" height="66" rx="6" fill="white" />
               <rect x="777.5" y="760.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -620,7 +622,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 37" d="M1181 388V510C1181 515.523 1185.48 520 1191 520H1207" stroke="#56ACC3" />
             <path id="Rectangle 38" d="M1181 171V320C1181 325.523 1185.48 330 1191 330H1207" stroke="#56ACC3" />
           </g>
-          <g className="MinProjBoard Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="MinProjBoard Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_31" filter="url(#filter29_d_23:667)">
               <rect x="1214" y="208" width="234" height="84" rx="6" fill="white" />
               <rect x="1214.5" y="208.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -637,7 +639,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_30" cx="1214.5" cy="225.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_30" cx="1214.5" cy="225.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="AWP Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="AWP Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_32" filter="url(#filter30_d_23:667)">
               <rect x="1214" y="312" width="234" height="84" rx="6" fill="white" />
               <rect x="1214.5" y="312.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -654,7 +656,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_31" cx="1214.5" cy="329.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_31" cx="1214.5" cy="329.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="Prompt SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="Prompt SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_33" filter="url(#filter31_d_23:667)">
               <rect x="1214" y="416" width="234" height="66" rx="6" fill="white" />
               <rect x="1214.5" y="416.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -670,7 +672,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_32" cx="1214.5" cy="433.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_32" cx="1214.5" cy="433.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="HR Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="HR Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_34" filter="url(#filter32_d_23:667)">
               <rect x="1214" y="502" width="234" height="66" rx="6" fill="white" />
               <rect x="1214.5" y="502.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -706,7 +708,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 44" d="M1505 406V736C1505 741.523 1509.48 746 1515 746H1531" stroke="#56ACC3" />
             <path id="Rectangle 42" d="M1505 171V320C1505 325.523 1509.48 330 1515 330H1531" stroke="#56ACC3" />
           </g>
-          <g className="MMB Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="MMB Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_35" filter="url(#filter33_d_23:667)">
               <rect x="1538" y="208" width="234" height="84" rx="6" fill="white" />
               <rect x="1538.5" y="208.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -723,7 +725,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_34" cx="1538.5" cy="225.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_34" cx="1538.5" cy="225.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="BTORFV Offline" opacity={(roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
+          <g className="BTORFV Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_36" filter="url(#filter34_d_23:667)">
               <rect x="1538" y="312" width="234" height="84" rx="6" fill="white" />
               <rect x="1538.5" y="312.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -740,7 +742,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_35" cx="1538.5" cy="329.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_35" cx="1538.5" cy="329.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="HACT SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
+          <g className="HACT SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_37" filter="url(#filter35_d_23:667)">
               <rect x="1538" y="416" width="234" height="84" rx="6" fill="white" />
               <rect x="1538.5" y="416.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -757,7 +759,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_36" cx="1538.5" cy="433.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_36" cx="1538.5" cy="433.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="MTFPE SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
+          <g className="MTFPE SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_38" filter="url(#filter36_d_23:667)">
               <rect x="1538" y="520" width="234" height="84" rx="6" fill="white" />
               <rect x="1538.5" y="520.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -774,7 +776,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_37" cx="1538.5" cy="537.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_37" cx="1538.5" cy="537.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="PBRM Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="PBRM Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_39" filter="url(#filter37_d_23:667)">
               <rect x="1538" y="624" width="234" height="84" rx="6" fill="white" />
               <rect x="1538.5" y="624.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -791,7 +793,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_38" cx="1538.5" cy="641.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_38" cx="1538.5" cy="641.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="MYWP Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="MYWP Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_40" filter="url(#filter38_d_23:667)">
               <rect x="1538" y="728" width="234" height="66" rx="6" fill="white" />
               <rect x="1538.5" y="728.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -826,7 +828,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 49" d="M1829 388V718C1829 723.523 1833.48 728 1839 728H1855" stroke="#56ACC3" />
             <path id="Rectangle 50" d="M1829 171V320C1829 325.523 1833.48 330 1839 330H1855" stroke="#56ACC3" />
           </g>
-          <g className="UREI Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1 || roles.indexOf("M&E Officer") !== -1) ? 1 : 0.25}>
+          <g className="UREI Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1 || roles.indexOf("M&E Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_41" filter="url(#filter39_d_23:667)">
               <rect x="1862" y="208" width="234" height="84" rx="6" fill="white" />
               <rect x="1862.5" y="208.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -843,7 +845,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_40" cx="1862.5" cy="225.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_40" cx="1862.5" cy="225.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="PQAI SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Quality Assessor") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="PQAI SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Quality Assessor") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_42" filter="url(#filter40_d_23:667)">
               <rect x="1862" y="312" width="234" height="84" rx="6" fill="white" />
               <rect x="1862.5" y="312.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -860,7 +862,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_41" cx="1862.5" cy="329.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_41" cx="1862.5" cy="329.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="RiskRegister Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="RiskRegister Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_43" filter="url(#filter41_d_23:667)">
               <rect x="1862" y="416" width="234" height="66" rx="6" fill="white" />
               <rect x="1862.5" y="416.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -876,7 +878,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_42" cx="1862.5" cy="433.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_42" cx="1862.5" cy="433.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="BTORFV Offline" opacity={(roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
+          <g className="BTORFV Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_44" filter="url(#filter42_d_23:667)">
               <rect x="1862" y="502" width="234" height="84" rx="6" fill="white" />
               <rect x="1862.5" y="502.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -893,7 +895,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_43" cx="1862.5" cy="519.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_43" cx="1862.5" cy="519.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="LLR Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="LLR Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_45" filter="url(#filter43_d_23:667)">
               <rect x="1862" y="710" width="234" height="84" rx="6" fill="white" />
               <rect x="1862.5" y="710.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -910,7 +912,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_44" cx="1862.5" cy="727.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_44" cx="1862.5" cy="727.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="LLPR Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="LLPR Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_46" filter="url(#filter44_d_23:667)">
               <rect x="1862" y="606" width="234" height="84" rx="6" fill="white" />
               <rect x="1862.5" y="606.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -939,7 +941,7 @@ export const ProjectCycle = (props: Props) => {
             </text>
           </g>
           <path id="Connetors_2" d="M2153 171V216C2153 221.523 2157.48 226 2163 226H2179" stroke="#56ACC3" />
-          <g className="MPBRM Offline" opacity={(roles.length === 0 || roles.indexOf("Project Officer") !== -1) ? 1 : 0.25}>
+          <g className="MPBRM Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_47" filter="url(#filter45_d_23:667)">
               <rect x="2186" y="208" width="234" height="84" rx="6" fill="white" />
               <rect x="2186.5" y="208.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -973,7 +975,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 53" d="M2477 302V406C2477 411.523 2481.48 416 2487 416H2503" stroke="#56ACC3" />
             <path id="Rectangle 54" d="M2477 171V301C2477 306.523 2481.48 311 2487 311H2503" stroke="#56ACC3" />
           </g>
-          <g className="RiskRegister Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="RiskRegister Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_48" filter="url(#filter46_d_23:667)">
               <rect x="2510" y="208" width="234" height="66" rx="6" fill="white" />
               <rect x="2510.5" y="208.5" width="233" height="65" rx="5.5" stroke="#0F8B79" />
@@ -989,7 +991,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_47" cx="2510.5" cy="225.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_47" cx="2510.5" cy="225.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="MPBRM Offline" opacity={(roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="MPBRM Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_49" filter="url(#filter47_d_23:667)">
               <rect x="2510" y="294" width="234" height="84" rx="6" fill="white" />
               <rect x="2510.5" y="294.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -1006,7 +1008,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_48" cx="2510.5" cy="311.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_48" cx="2510.5" cy="311.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="PD SharePoint Website" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
+          <g className="PD SharePoint Website" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Developer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_50" filter="url(#filter48_d_23:667)">
               <rect x="2510" y="398" width="234" height="84" rx="6" fill="white" />
               <rect x="2510.5" y="398.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -1043,7 +1045,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 57" d="M2801 388V510C2801 515.523 2805.48 520 2811 520H2827" stroke="#56ACC3" />
             <path id="Rectangle 58" d="M2801 171V302C2801 307.523 2805.48 312 2811 312H2827" stroke="#56ACC3" />
           </g>
-          <g className="FACE Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="FACE Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_51" filter="url(#filter49_d_23:667)">
               <rect x="2834" y="208" width="234" height="66" rx="6" fill="white" />
               <rect x="2834.5" y="208.5" width="233" height="65" rx="5.5" stroke="#D52B1E" />
@@ -1059,7 +1061,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_50" cx="2834.5" cy="225.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_50" cx="2834.5" cy="225.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="CDR Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1 || roles.indexOf("RR") !== -1) ? 1 : 0.25}>
+          <g className="CDR Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Manager") !== -1 || roles.indexOf("RR") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_52" filter="url(#filter50_d_23:667)">
               <rect x="2834" y="294" width="234" height="84" rx="6" fill="white" />
               <rect x="2834.5" y="294.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -1076,7 +1078,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_51" cx="2834.5" cy="311.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_51" cx="2834.5" cy="311.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="DPPR Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="DPPR Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_53" filter="url(#filter51_d_23:667)">
               <rect x="2834" y="398" width="234" height="84" rx="6" fill="white" />
               <rect x="2834.5" y="398.5" width="233" height="83" rx="5.5" stroke="#D52B1E" />
@@ -1093,7 +1095,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_52" cx="2834.5" cy="415.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_52" cx="2834.5" cy="415.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="OREOI Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="OREOI Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_54" filter="url(#filter52_d_23:667)">
               <rect x="2834" y="502" width="234" height="84" rx="6" fill="white" />
               <rect x="2834.5" y="502.5" width="233" height="83" rx="5.5" stroke="#0F8B79" />
@@ -1127,7 +1129,7 @@ export const ProjectCycle = (props: Props) => {
             <path id="Rectangle 64" d="M70 1824L582.872 1824C588.395 1824 592.872 1828.48 592.872 1834L592.872 1865C592.872 1870.52 597.349 1875 602.872 1875L606 1875" stroke="#BCBEC0" />
             <path id="Rectangle 65" d="M70 1824L823.872 1824C829.395 1824 833.872 1828.48 833.872 1834L833.872 1865C833.872 1870.52 838.349 1875 843.872 1875L847 1875" stroke="#BCBEC0" />
           </g>
-          <g className="FPR Offline" opacity={(roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
+          <g className="FPR Offline" opacity={(all || !online) && (roles.length === 0 || roles.indexOf("Project Manager") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_55" filter="url(#filter53_d_23:667)">
               <rect x="131" y="1857" width="194" height="84" rx="6" fill="white" />
               <rect x="131.5" y="1857.5" width="193" height="83" rx="5.5" stroke="#D52B1E" />
@@ -1144,7 +1146,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_54" cx="131.5" cy="1874.5" r="7" fill="white" stroke="#D52B1E" />
             <circle id="Ellipse 13_54" cx="131.5" cy="1874.5" r="4" fill="#D52B1E" stroke="#D52B1E" />
           </g>
-          <g className="PQAC SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Project Board") !== -1 || roles.indexOf("Programme Officer") !== -1 || roles.indexOf("Quality Assessor") !== -1) ? 1 : 0.25}>
+          <g className="PQAC SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Project Board") !== -1 || roles.indexOf("Programme Officer") !== -1 || roles.indexOf("Quality Assessor") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_56" filter="url(#filter54_d_23:667)">
               <rect x="613" y="1857" width="194" height="84" rx="6" fill="white" />
               <rect x="613.5" y="1857.5" width="193" height="83" rx="5.5" stroke="#0F8B79" />
@@ -1161,7 +1163,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_55" cx="613.5" cy="1874.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_55" cx="613.5" cy="1874.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="PCM Atlas" opacity={atlas && online && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
+          <g className="PCM Atlas" opacity={(atlas || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_57" filter="url(#filter55_d_23:667)">
               <rect x="854" y="1857" width="194" height="84" rx="6" fill="white" />
               <rect x="854.5" y="1857.5" width="193" height="83" rx="5.5" stroke="#0F8B79" />
@@ -1178,7 +1180,7 @@ export const ProjectCycle = (props: Props) => {
             <circle id="Ellipse 12_56" cx="854.5" cy="1874.5" r="7" fill="white" stroke="#0F8B79" />
             <circle id="Ellipse 13_56" cx="854.5" cy="1874.5" r="4" fill="#0F8B79" stroke="#0F8B79" />
           </g>
-          <g className="ERC SharePoint" opacity={sharePoint && online && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
+          <g className="ERC SharePoint" opacity={(sharePoint || (online && all)) && (roles.length === 0 || roles.indexOf("Programme Officer OAI") !== -1) ? 1 : 0.25}>
             <g id="Rectangle 6_58" filter="url(#filter56_d_23:667)">
               <rect x="372" y="1857" width="194" height="102" rx="6" fill="white" />
               <rect x="372.5" y="1857.5" width="193" height="101" rx="5.5" stroke="#0F8B79" />
