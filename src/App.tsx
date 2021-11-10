@@ -180,11 +180,12 @@ const CheckBoxEl = styled.div`
   margin: 0 10px;
   align-items: center;
   cursor: pointer;
+  color: #f1f1f1;
 `;
 
 const OptionHead = styled.div`
   font-size: 14px;
-  color: #383838;
+  color: #f1f1f1;
   margin-bottom: 10px;
   font-weight: bold;
   text-transform: uppercase;
@@ -203,8 +204,8 @@ const Checkbox = styled.div<CheckBoxProps>`
   width: 14px;
   height: 14px;
   margin-right: 5px;
-  border: 1px solid #383838;
-  background-color: ${props => props.selected ? '#383838' : '#FFFFFF'};
+  border: 1px solid #f1f1f1;
+  background-color: ${props => props.selected ? '#f1f1f1' : 'rgba(0,0,0,0'};
   font-weight: ${props => props.selected ? 'bold' : 'normal'};
 `;
 
