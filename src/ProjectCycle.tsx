@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { zoom } from "d3-zoom";
+import { select } from 'd3-selection';
 
 interface Props {
   sharePoint: boolean;
@@ -15,10 +17,25 @@ export const ProjectCycle = (props: Props) => {
     online
   } = props;
   const [selectedHeader, setSelectedHeader] = useState<string | null>(null);
+  const SVG = useRef<SVGSVGElement>(null);
+  const mapG = useRef<SVGGElement>(null);
+  useEffect(() => {
+    const mapGSelect = select(mapG.current);
+    const mapSvgSelect = select(SVG.current);
+    const zoomBehaviour = zoom()
+      .scaleExtent([1, 3])
+      .translateExtent([[0, 0], [3115, 2033]])
+      .on('zoom', ({ transform }) => {
+        mapGSelect.attr('transform', transform);
+      });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mapSvgSelect.call(zoomBehaviour as any);
+  }, []);
   return (
     <div style={{width: "calc(100% - 40px)", height: "calc(100vh - 140px)"}}>
-      <svg width="100%" height="100%" style={{padding:"20px"}} viewBox="0 0 3115 2033" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g id="Group 78">
+      <svg width="100%" height="100%" style={{padding:"20px"}} viewBox="0 0 3115 2033" fill="none" xmlns="http://www.w3.org/2000/svg" ref={SVG}>
+      <g id="Group 78" ref={mapG}>
         <g id="BGLines">
           <rect id="Rectangle 1" x="35" y="136" width="3074" height="1845" rx="30" stroke="#E4882E" stroke-width="12" />
           <path id="Rectangle 3" d="M1581 1981H65C48.4314 1981 35 1967.57 35 1951V1825" stroke="#BCBEC0" stroke-width="12" />
