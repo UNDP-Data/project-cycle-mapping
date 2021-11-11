@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { ProjectCycle } from './ProjectCycle';
+import { ListView } from './ListView';
 import styled, { createGlobalStyle } from 'styled-components';
 import Select from 'react-dropdown-select';
 
@@ -149,9 +150,25 @@ const HeaderDiv = styled.div`
   flex-wrap: wrap;
 `;
 
+const ToggleEl = styled.div`
+  display: flex;
+  border-radius: 20px;
+  background-color: var(--bg-blue);
+`;
+
 interface ButtonProps {
   selected: boolean;
 }
+
+const Toggle= styled.div<ButtonProps>`
+  font-size: 16px;
+  font-weight: medium;
+  background-color: ${props => props.selected ? 'rgba(15, 139, 121, 1)' : 'rgba(15, 139, 121, 0)'};
+  color: ${props => props.selected ? '#FFF' : '#383838'};
+  padding: 11px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+`;
 
 const Button = styled.div<ButtonProps>`
   background-color: ${props => props.selected ? 'rgba(15, 139, 121, 0.4)' : '#E1E1E1'};
@@ -248,6 +265,7 @@ function App() {
   const [sharePoint, setsharePoint] = useState(false)
   const [atlas, setAtlas] = useState(false)
   const [website, setWebsite] = useState(false)
+  const [view, setView] = useState('map')
   const [selectedRole, setSelectedRoles] = useState<string[]>([])
   return (
     <>
@@ -296,15 +314,33 @@ function App() {
               dropdownGap={2}
             />
           </FilterEl>
+          <FilterEl>
+            <OptionHead>Select View</OptionHead>
+            <ToggleEl>
+              <Toggle selected={view === 'map' ? true : false} onClick={() => { setView('map') }}>Map View</Toggle>
+              <Toggle selected={view === 'list' ? true : false} onClick={() => { setView('list') }}>List View</Toggle>
+            </ToggleEl>
+          </FilterEl>
         </HeaderDiv>
-        <ProjectCycle
-          sharePoint={sharePoint}
-          atlas={atlas}
-          website={website}
-          online={online}
-          roles={selectedRole}
-          all={!(atlas || website || sharePoint)}
-        />
+        {
+          view === 'map' ?
+          <ProjectCycle
+            sharePoint={sharePoint}
+            atlas={atlas}
+            website={website}
+            online={online}
+            roles={selectedRole}
+            all={!(atlas || website || sharePoint)}
+          /> :
+          <ListView
+            sharePoint={sharePoint}
+            atlas={atlas}
+            website={website}
+            online={online}
+            roles={selectedRole}
+            all={!(atlas || website || sharePoint)}
+          />
+        }
       </div>
     </>
   );
