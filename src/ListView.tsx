@@ -36,8 +36,8 @@ export const ListView = (props: Props) => {
     mapSvgSelect.call(zoomBehaviour as any);
   }, []);
   return (
-    <div style={{width: "calc(100% - 40px)", height: "calc(100vh - 145px)"}}>
-      <svg width="100%" height="100%" style={{padding:"0 20px 20px 20px"}} viewBox="0 0 1557 999" fill="none" xmlns="http://www.w3.org/2000/svg" ref={SVG}>
+    <div style={{width: "calc(100% - 40px)", height: "calc(100vh - 195px)"}}>
+      <svg width="100%" height="100%" style={{padding:"50px 20px 20px 20px"}} viewBox="0 0 1557 999" fill="none" xmlns="http://www.w3.org/2000/svg" ref={SVG}>
         <g id="Group 79" ref={mapG}>
           <g id="Online">
             <g id="OnlineAssets">
