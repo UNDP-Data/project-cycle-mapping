@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { ProjectCycle } from './ProjectCycle';
 import { ListView } from './ListView';
+import { Key } from './Key'
 import styled, { createGlobalStyle } from 'styled-components';
 import Select from 'react-dropdown-select';
 
@@ -163,7 +164,7 @@ interface ButtonProps {
 const Toggle= styled.div<ButtonProps>`
   font-size: 16px;
   font-weight: medium;
-  background-color: ${props => props.selected ? 'rgba(15, 139, 121, 1)' : 'rgba(15, 139, 121, 0)'};
+  background-color: ${props => props.selected ? 'rgba(6, 127, 128, 1)' : 'rgba(6, 127, 128, 0)'};
   color: ${props => props.selected ? '#FFF' : '#383838'};
   padding: 11px 25px;
   border-radius: 20px;
@@ -171,8 +172,8 @@ const Toggle= styled.div<ButtonProps>`
 `;
 
 const Button = styled.div<ButtonProps>`
-  background-color: ${props => props.selected ? 'rgba(213, 43, 30, 0.4)' : '#E1E1E1'};
-  border: ${props => props.selected ? '1px solid rgba(213, 43, 30, 1)' : '1px solid #CCCCCC'};
+  background-color: ${props => props.selected ? 'rgba(204, 62, 39, 0.4)' : '#E1E1E1'};
+  border: ${props => props.selected ? '1px solid rgba(204, 62, 39, 1)' : '1px solid #CCCCCC'};
   border-radius: 25px;
   width: 40px;
   height: 20px;
@@ -182,7 +183,7 @@ const Button = styled.div<ButtonProps>`
 `;
 
 const ToggleCircle = styled.div<ButtonProps>`
-  background-color: ${props => props.selected ? 'rgba(213, 43, 30, 1)' : '#CCCCCC'};
+  background-color: ${props => props.selected ? 'rgba(204, 62, 39, 1)' : '#CCCCCC'};
   border-radius: 25px;
   width: 18px;
   height: 18px;
@@ -204,6 +205,27 @@ const OptionHead = styled.div`
 const FilterEl = styled.div`
   margin: 10px 25px;
   justify-content: flex-start;
+`;
+
+const Legend = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(255,255,255,0.7);
+  padding: 10px;
+  font-family: "Proxima Nova";
+  font-size: 12px;
+  color: #383838;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+`
+
+const LegendTitle = styled.div`
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: left;
 `;
 
 
@@ -328,6 +350,14 @@ function App() {
             roles={selectedRoles}
             all={selectedSystem.length === 0}
           />
+        }
+        {
+          view === 'map' ?
+            <Legend>
+              <LegendTitle>Assets Availability</LegendTitle>
+              <Key />
+            </Legend> : 
+            null
         }
       </div>
     </>
