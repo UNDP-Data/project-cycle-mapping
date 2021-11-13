@@ -171,8 +171,8 @@ const Toggle= styled.div<ButtonProps>`
 `;
 
 const Button = styled.div<ButtonProps>`
-  background-color: ${props => props.selected ? 'rgba(15, 139, 121, 0.4)' : '#E1E1E1'};
-  border: ${props => props.selected ? '1px solid rgba(15, 139, 121, 1)' : '1px solid #CCCCCC'};
+  background-color: ${props => props.selected ? 'rgba(213, 43, 30, 0.4)' : '#E1E1E1'};
+  border: ${props => props.selected ? '1px solid rgba(213, 43, 30, 1)' : '1px solid #CCCCCC'};
   border-radius: 25px;
   width: 40px;
   height: 20px;
@@ -182,7 +182,7 @@ const Button = styled.div<ButtonProps>`
 `;
 
 const ToggleCircle = styled.div<ButtonProps>`
-  background-color: ${props => props.selected ? 'rgba(15, 139, 121, 1)' : '#CCCCCC'};
+  background-color: ${props => props.selected ? 'rgba(213, 43, 30, 1)' : '#CCCCCC'};
   border-radius: 25px;
   width: 18px;
   height: 18px;
@@ -190,14 +190,6 @@ const ToggleCircle = styled.div<ButtonProps>`
   margin-left: ${props => props.selected ? '21px' : '1px'};
   cursor: pointer;
   font-weight: bold;
-`;
-
-const CheckBoxEl = styled.div`
-  display: flex;
-  margin: 0 10px;
-  align-items: center;
-  cursor: pointer;
-  color: #383838;
 `;
 
 const OptionHead = styled.div`
@@ -210,25 +202,10 @@ const OptionHead = styled.div`
 `;
 
 const FilterEl = styled.div`
-  margin: 0 25px;
+  margin: 10px 25px;
   justify-content: flex-start;
 `;
-interface CheckBoxProps {
-  selected: boolean;
-}
 
-const Checkbox = styled.div<CheckBoxProps>`
-  width: 14px;
-  height: 14px;
-  margin-right: 5px;
-  border: 1px solid #383838;
-  background-color: ${props => props.selected ? '#383838' : '#ffffff'};
-`;
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  margin-top: 21px;
-`;
 
 const options = [
   {
@@ -259,41 +236,52 @@ const options = [
     value: "Project Board"
   }
 ]
+const systemOptions = [
+  {
+    value: "Atlas ERP"
+  },
+  {
+    value: "SharePoint"
+  },
+  {
+    value: "Public Website"
+  },
+]
 
 function App() {
-  const [online, setOnline] = useState(true)
-  const [sharePoint, setsharePoint] = useState(false)
-  const [atlas, setAtlas] = useState(false)
-  const [website, setWebsite] = useState(false)
+  const [online, setOnline] = useState(false)
   const [view, setView] = useState('map')
-  const [selectedRole, setSelectedRoles] = useState<string[]>([])
+  const [selectedRoles, setSelectedRoles] = useState<string[]>([])
+  const [selectedSystem, setSelectedSystem] = useState<string[]>([])
   return (
     <>
       <GlobalStyle />
       <div className="App">
         <HeaderDiv>
           <FilterEl>
-            <OptionHead>Highlight Offline Assets</OptionHead>
-            <Button selected={!online} onClick={() => {setOnline(!online)}}>
-              <ToggleCircle selected={!online} />
+            <OptionHead>Highlight Assets Not Available Organization Wide</OptionHead>
+            <Button selected={online} onClick={() => {setOnline(!online)}}>
+              <ToggleCircle selected={online} />
             </Button>
           </FilterEl>
           <FilterEl>
-            <OptionHead>Filter by System</OptionHead>
-            <CheckboxContainer>
-              <CheckBoxEl onClick={() => {setAtlas(!atlas)}}>
-                <Checkbox selected={atlas} />
-                Atlas ERP
-              </CheckBoxEl>
-              <CheckBoxEl onClick={() => {setsharePoint(!sharePoint)}}>
-                <Checkbox selected={sharePoint} />
-                SharePoint
-              </CheckBoxEl>
-              <CheckBoxEl onClick={() => {setWebsite(!website)}}>
-                <Checkbox selected={website} />
-                Website
-              </CheckBoxEl>
-            </CheckboxContainer>
+            <OptionHead>Filter by Systems</OptionHead>
+            <Select
+              options={systemOptions}
+              className='dropdownMulti'
+              onChange={(el) => { setSelectedSystem(el.map((d: { value: string; }) => d.value)); }}
+              values={selectedSystem.map((d) => ({
+                value: d,
+              }))}
+              labelField="value"
+              valueField="value"
+              dropdownHeight='250px'
+              dropdownPosition='auto'
+              searchable={true}
+              placeholder="Filter by systems..."
+              multi
+              dropdownGap={2}
+            />
           </FilterEl>
           <FilterEl>
             <OptionHead>Filter by Roles</OptionHead>
@@ -301,7 +289,7 @@ function App() {
               options={options}
               className='dropdownMulti'
               onChange={(el) => { setSelectedRoles(el.map((d: { value: string; }) => d.value)); }}
-              values={selectedRole.map((d) => ({
+              values={selectedRoles.map((d) => ({
                 value: d,
               }))}
               labelField="value"
@@ -325,20 +313,20 @@ function App() {
         {
           view === 'map' ?
           <ProjectCycle
-            sharePoint={sharePoint}
-            atlas={atlas}
-            website={website}
+            sharePoint={selectedSystem.indexOf('SharePoint') !== -1}
+            atlas={selectedSystem.indexOf('Atlas ERP') !== -1}
+            website={selectedSystem.indexOf('Public Website') !== -1}
             online={online}
-            roles={selectedRole}
-            all={!(atlas || website || sharePoint)}
+            roles={selectedRoles}
+            all={selectedSystem.length === 0}
           /> :
           <ListView
-            sharePoint={sharePoint}
-            atlas={atlas}
-            website={website}
+            sharePoint={selectedSystem.indexOf('SharePoint') !== -1}
+            atlas={selectedSystem.indexOf('Atlas ERP') !== -1}
+            website={selectedSystem.indexOf('Public Website') !== -1}
             online={online}
-            roles={selectedRole}
-            all={!(atlas || website || sharePoint)}
+            roles={selectedRoles}
+            all={selectedSystem.length === 0}
           />
         }
       </div>
